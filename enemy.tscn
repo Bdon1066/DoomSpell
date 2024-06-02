@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8tg15b2kym1x"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_34s1e"]
+[ext_resource type="Texture2D" uid="uid://d0idl67i2sh2m" path="res://icon.svg" id="1_sysfr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_unxh5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13k8h"]
+atlas = ExtResource("1_sysfr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qxlkt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13k8h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_34s1e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_unxh5")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_qxlkt")
